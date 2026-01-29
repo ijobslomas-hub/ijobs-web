@@ -3,79 +3,279 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ijobs - Apple Store</title>
-    <link rel="stylesheet" href="style.css">
+    <title>ijobs - Apple Store Premium</title>
+    <style>
+        /* 1. VARIABLES Y CONFIGURACIÓN BASE */
+        :root {
+            --purpura-vibrante: #6F2DBD;
+            --lila-suave: #A663CC;
+            --negro-profundo: #171123;
+            --blanco-puro: #FBFBFB;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--negro-profundo);
+            color: var(--blanco-puro);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* 2. HERO CON IMAGEN DE FONDO + DEGRADADO ANIMADO */
+        .hero {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(125deg, rgba(23, 17, 35, 0.8), rgba(111, 45, 189, 0.7), rgba(23, 17, 35, 0.8), rgba(166, 99, 204, 0.7)), 
+                        url('fondo-ijobs.jpg');
+            background-size: 400% 400%, cover;
+            background-position: center;
+            background-attachment: fixed;
+            animation: gradientAnimation 15s ease infinite;
+            text-align: center;
+            padding: 20px;
+        }
+
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%, center; }
+            50% { background-position: 100% 50%, center; }
+            100% { background-position: 0% 50%, center; }
+        }
+
+        /* 3. TARJETA PRINCIPAL (Liquid Glass) */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(25px) saturate(180%);
+            -webkit-backdrop-filter: blur(25px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 40px;
+            padding: 60px 40px;
+            max-width: 800px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+            animation: fadeInUp 1.2s ease-out forwards;
+        }
+
+        .glass-card h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            letter-spacing: -2px;
+            background: linear-gradient(to right, #fff, var(--lila-suave));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .btn-explorar {
+            background: var(--blanco-puro);
+            color: var(--negro-profundo);
+            border: none;
+            padding: 16px 40px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            margin-top: 20px;
+        }
+
+        .btn-explorar:hover {
+            background: var(--purpura-vibrante);
+            color: white;
+            transform: scale(1.05);
+            box-shadow: 0 0 20px var(--lila-suave);
+        }
+
+        /* 4. BARRA DE CONFIANZA */
+        .trust-bar {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: center;
+            padding: 60px 20px;
+            background: rgba(255, 255, 255, 0.02);
+            border-top: 1px solid rgba(166, 99, 204, 0.1);
+            border-bottom: 1px solid rgba(166, 99, 204, 0.1);
+            width: 100%;
+        }
+
+        .trust-item { text-align: center; flex: 1; }
+        .trust-item .icon {
+            font-size: 2.5rem;
+            display: block;
+            margin-bottom: 10px;
+            filter: drop-shadow(0 0 10px var(--purpura-vibrante));
+        }
+        .trust-item p { font-weight: 600; font-size: 1rem; white-space: nowrap; }
+
+        /* 5. SECCIÓN PRODUCTOS */
+        .productos { padding: 100px 20px; text-align: center; }
+        .contenedor-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .producto-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(166, 99, 204, 0.2);
+            border-radius: 35px;
+            padding: 30px;
+            transition: 0.4s;
+            text-align: center;
+        }
+
+        .producto-card:hover {
+            transform: translateY(-15px);
+            border-color: var(--lila-suave);
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 20px 40px rgba(111, 45, 189, 0.2);
+        }
+
+        .producto-card img { width: 100%; border-radius: 20px; margin-bottom: 20px; }
+
+        .btn-comprar {
+            width: 100%;
+            background: transparent;
+            color: var(--blanco-puro);
+            border: 1px solid var(--lila-suave);
+            padding: 12px;
+            border-radius: 15px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 15px;
+        }
+
+        .btn-comprar:hover {
+            background: var(--purpura-vibrante);
+            border-color: var(--purpura-vibrante);
+            transform: scale(1.02);
+        }
+
+        /* 6. FOOTER */
+        .footer-ijobs {
+            background-color: #0d0d0d;
+            padding: 80px 20px;
+            border-top: 1px solid rgba(166, 99, 204, 0.1);
+            text-align: center;
+        }
+
+        .instagram-link {
+            display: inline-flex;
+            align-items: center;
+            color: white;
+            text-decoration: none;
+            padding: 12px 25px;
+            border: 1px solid var(--lila-suave);
+            border-radius: 15px;
+            background: rgba(166, 99, 204, 0.1);
+            transition: 0.3s;
+        }
+
+        /* 7. WHATSAPP WIDGET */
+        .chat-container {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+
+        .chat-message {
+            background: var(--negro-profundo);
+            border: 1px solid var(--lila-suave);
+            padding: 12px 18px;
+            border-radius: 18px 18px 2px 18px;
+            margin-bottom: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            font-size: 0.9rem;
+        }
+
+        .whatsapp-btn {
+            width: 65px;
+            height: 65px;
+            background-color: #25d366;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.4);
+        }
+
+        .whatsapp-btn img { width: 35px; }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 768px) {
+            .trust-bar { flex-direction: column; gap: 40px; }
+            .glass-card h1 { font-size: 2.5rem; }
+            .trust-item p { white-space: normal; }
+        }
+    </style>
 </head>
 <body>
 
-    <header>
-        <nav>
-            <div class="logo">ijobs</div>
-            <ul>
-                <li><a href="#">iPhone</a></li>
-                <li><a href="#">Accesorios</a></li>
-                <li><a href="#">Contacto</a></li>
-            </ul>
-        </nav>
-    </header>
-
     <section class="hero">
         <div class="glass-card">
-            <h1>Lo último de Apple, a tu alcance.</h1>
-            <p>Tu próximo iPhone está en ijobs. Estilo, potencia y tecnología para vos.</p>
-            <button>Ver Catálogo</button>
+            <h1>ijobs</h1>
+            <p>Tu estilo, tu iPhone. Lo último de Apple con la mejor onda juvenil.</p>
+            <button class="btn-explorar" onclick="document.getElementById('catalogo').scrollIntoView({behavior: 'smooth'})">Explorar Equipos</button>
         </div>
     </section>
-<section class="productos">
-        <h2 class="titulo-seccion">Equipos Destacados</h2>
+
+    <section class="trust-bar">
+        <div class="trust-item"><span class="icon">💎</span><p>Equipos 100% Originales</p></div>
+        <div class="trust-item"><span class="icon">🚀</span><p>Envíos Flash en el día</p></div>
+        <div class="trust-item"><span class="icon">🔒</span><p>Garantía de Confianza</p></div>
+    </section>
+
+    <section id="catalogo" class="productos">
+        <h2 style="margin-bottom: 50px; font-size: 2.5rem;">Equipos Disponibles</h2>
         <div class="contenedor-grid">
             
             <div class="producto-card">
-                <img src="https://m.media-amazon.com/images/I/61HHS0HrjpL._AC_SL1500_.jpg" alt="iPhone 14 Pro">
-                <h3>iPhone 14 Pro</h3>
-                <p>Cámaras pro, rendimiento épico.</p>
-                <span class="precio">Consultar Precio</span>
-                <button class="btn-comprar">Lo quiero</button>
+                <img src="iphone13.png" alt="iPhone 13 Premium">
+                <h3>iPhone 13</h3>
+                <p>El favorito de la city. Batería y fotos increíbles.</p>
+                <p style="color: var(--lila-suave); font-weight: bold;">U$S 400</p>
+                <button class="btn-comprar" onclick="window.open('https://wa.me/5491138057772?text=Hola%20ijobs!%20Me%20interesa%20el%20iPhone%2013', '_blank')">Consultar Stock</button>
             </div>
 
             <div class="producto-card">
-                <img src="https://m.media-amazon.com/images/I/61xeIT6UiqL._AC_SL1500_.jpg" alt="iPhone 13">
-                <h3>iPhone 13</h3>
-                <p>El equilibrio perfecto entre potencia y estilo.</p>
-                <span class="precio">Consultar Precio</span>
-                <button class="btn-comprar">Lo quiero</button>
+                <img src="iphone14pro.png" alt="iPhone 14 Pro Premium">
+                <h3>iPhone 14 Pro</h3>
+                <p>Dynamic Island. Cámara de 48MP. El rey del contenido.</p>
+                <p style="color: var(--lila-suave); font-weight: bold;">U$S 540</p>
+                <button class="btn-comprar" onclick="window.open('https://wa.me/5491138057772?text=Hola%20ijobs!%20Me%20interesa%20el%20iPhone%2014%20Pro', '_blank')">Consultar Stock</button>
             </div>
 
         </div>
     </section>
-<section class="trust-bar">
-    <div class="trust-item">
-        <span>💎</span>
-        <p>Equipos 100% Originales</p>
-    </div>
-    <div class="trust-item">
-        <span>🚀</span>
-        <p>Envíos Flash en el día</p>
-    </div>
-    <div class="trust-item">
-        <span>🔒</span>
-        <p>Garantía de Confianza</p>
-    </div>
-</section>
-<footer class="footer-ijobs">
-        <div class="footer-content">
-            <div class="footer-logo">ijobs</div>
-            <p>Especialistas en Apple y accesorios premium para vos.</p>
-            <div class="socials">
-                <a href="#">Instagram</a>
-                <a href="#">Facebook</a>
-                <a href="#">TikTok</a>
-            </div>
-            <p class="copyright">&copy; 2026 ijobs - Todos los derechos reservados.</p>
-        </div>
+
+    <footer class="footer-ijobs">
+        <div class="footer-logo">ijobs</div>
+        <p>Expertos en Apple. Elevamos tu tecnología.</p>
+        <a href="https://instagram.com/ijobs.iphone" target="_blank" class="instagram-link">Seguinos en Instagram</a>
+        <p style="margin-top: 40px; opacity: 0.3; font-size: 0.8rem;">&copy; 2026 ijobs - Reservados todos los derechos.</p>
     </footer>
-<a href="https://wa.me/TUNUMEROAQUI?text=Hola%20ijobs!%20Me%20interesa%20un%20iPhone" class="whatsapp-btn" target="_blank">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
-</a>
+
+    <div class="chat-container">
+        <div class="chat-message"><p>¡Hola! 👋 Soy de **ijobs**. ¿Buscás algún iPhone?</p></div>
+        <a href="https://wa.me/5491138057772" class="whatsapp-btn" target="_blank">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WA">
+        </a>
+    </div>
+
 </body>
 </html>
