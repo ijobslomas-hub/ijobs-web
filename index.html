@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ijobs - Apple Store Premium</title>
     <style>
-        /* 1. VARIABLES Y CONFIGURACIÓN BASE */
         :root {
             --purpura-vibrante: #6F2DBD;
             --lila-suave: #A663CC;
@@ -21,31 +20,32 @@
             color: var(--blanco-puro);
             overflow-x: hidden;
             line-height: 1.6;
+            scroll-behavior: smooth;
         }
 
-        /* 2. HERO CON IMAGEN DE FONDO + DEGRADADO ANIMADO */
         .hero {
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: linear-gradient(125deg, rgba(23, 17, 35, 0.8), rgba(111, 45, 189, 0.7), rgba(23, 17, 35, 0.8), rgba(166, 99, 204, 0.7)), 
-                        url('fondo-ijobs.jpg');
-            background-size: 400% 400%, cover;
-            background-position: center;
-            background-attachment: fixed;
-            animation: gradientAnimation 15s ease infinite;
-            text-align: center;
-            padding: 20px;
-        }
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Los colores se mezclan con tu imagen de fondo-ijobs.jpg */
+    background: linear-gradient(125deg, rgba(23, 17, 35, 0.7), var(--purpura-vibrante), var(--lila-suave), rgba(23, 17, 35, 0.7)), 
+                url('fondo-ijobs.jpg');
+    background-size: 400% 400%, cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-blend-mode: overlay; 
+    animation: moveGradient 15s ease infinite;
+    text-align: center;
+    padding: 20px;
+}
 
-        @keyframes gradientAnimation {
-            0% { background-position: 0% 50%, center; }
-            50% { background-position: 100% 50%, center; }
-            100% { background-position: 0% 50%, center; }
-        }
+@keyframes moveGradient {
+    0% { background-position: 0% 50%, center; }
+    50% { background-position: 100% 50%, center; }
+    100% { background-position: 0% 50%, center; }
+}
 
-        /* 3. TARJETA PRINCIPAL (Liquid Glass) */
         .glass-card {
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(25px) saturate(180%);
@@ -55,13 +55,11 @@
             padding: 60px 40px;
             max-width: 800px;
             box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
-            animation: fadeInUp 1.2s ease-out forwards;
         }
 
         .glass-card h1 {
-            font-size: 4rem;
+            font-size: 5rem;
             margin-bottom: 20px;
-            letter-spacing: -2px;
             background: linear-gradient(to right, #fff, var(--lila-suave));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -71,52 +69,24 @@
             background: var(--blanco-puro);
             color: var(--negro-profundo);
             border: none;
-            padding: 16px 40px;
+            padding: 18px 50px;
             border-radius: 50px;
             font-size: 1.1rem;
             font-weight: 700;
             cursor: pointer;
-            transition: all 0.4s ease;
+            transition: 0.4s;
             margin-top: 20px;
         }
 
-        .btn-explorar:hover {
-            background: var(--purpura-vibrante);
-            color: white;
-            transform: scale(1.05);
-            box-shadow: 0 0 20px var(--lila-suave);
-        }
-
-        /* 4. BARRA DE CONFIANZA */
-        .trust-bar {
-            display: flex;
-            flex-direction: row;
-            justify-content: space-around;
-            align-items: center;
-            padding: 60px 20px;
-            background: rgba(255, 255, 255, 0.02);
-            border-top: 1px solid rgba(166, 99, 204, 0.1);
-            border-bottom: 1px solid rgba(166, 99, 204, 0.1);
-            width: 100%;
-        }
-
-        .trust-item { text-align: center; flex: 1; }
-        .trust-item .icon {
-            font-size: 2.5rem;
-            display: block;
-            margin-bottom: 10px;
-            filter: drop-shadow(0 0 10px var(--purpura-vibrante));
-        }
-        .trust-item p { font-weight: 600; font-size: 1rem; white-space: nowrap; }
-
-        /* 5. SECCIÓN PRODUCTOS */
+        /* 2. GRILLA DE 6 PRODUCTOS COMPLETA */
         .productos { padding: 100px 20px; text-align: center; }
         .contenedor-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 40px;
             max-width: 1200px;
             margin: 0 auto;
+            align-items: stretch;
         }
 
         .producto-card {
@@ -126,78 +96,143 @@
             border-radius: 35px;
             padding: 30px;
             transition: 0.4s;
-            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
         }
 
-        .producto-card:hover {
-            transform: translateY(-15px);
-            border-color: var(--lila-suave);
-            background: rgba(255, 255, 255, 0.08);
-            box-shadow: 0 20px 40px rgba(111, 45, 189, 0.2);
+        /* 2. GRILLA DE PRODUCTOS CON ANIMACIÓN RECUPERADA */
+.producto-card {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(166, 99, 204, 0.2);
+    border-radius: 35px;
+    padding: 30px;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Animación suave */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+/* El efecto al pasar el mouse */
+.producto-card:hover {
+    transform: translateY(-12px) scale(1.02); /* Se levanta y agranda apenas */
+    border-color: var(--lila-suave);
+    background: rgba(255, 255, 255, 0.06);
+    box-shadow: 0 15px 35px rgba(111, 45, 189, 0.2); /* Resplandor lila suave */
+}
+
+.producto-card img { 
+    width: 100%; 
+    border-radius: 20px; 
+    margin-bottom: 20px;
+    transition: 0.5s; 
+}
+
+/* Efecto zoom en la foto del iPhone al hacer hover */
+.producto-card:hover img {
+    transform: scale(1.05);
+}
+
+        .btn-comprar:hover { background: var(--purpura-vibrante); border-color: var(--purpura-vibrante); }
+
+        /* 3. FAQ PREMIUM */
+        .faq-section { padding: 80px 20px; max-width: 900px; margin: 0 auto; }
+        .faq-container { 
+            background: rgba(255, 255, 255, 0.02); 
+            border-radius: 30px; 
+            padding: 20px; 
+            border: 1px solid rgba(166, 99, 204, 0.1); 
         }
 
-        .producto-card img { width: 100%; border-radius: 20px; margin-bottom: 20px; }
-
-        .btn-comprar {
+        .faq-item { border-bottom: 1px solid rgba(166, 99, 204, 0.1); }
+        .faq-item:last-child { border-bottom: none; }
+        
+        .faq-question {
+            all: unset;
             width: 100%;
-            background: transparent;
-            color: var(--blanco-puro);
-            border: 1px solid var(--lila-suave);
-            padding: 12px;
-            border-radius: 15px;
-            font-size: 0.9rem;
-            font-weight: 600;
+            padding: 25px 20px;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             cursor: pointer;
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 600;
             transition: 0.3s;
-            margin-top: 15px;
         }
 
-        .btn-comprar:hover {
-            background: var(--purpura-vibrante);
-            border-color: var(--purpura-vibrante);
-            transform: scale(1.02);
+        .faq-question:hover { color: var(--lila-suave); background: rgba(166, 99, 204, 0.05); border-radius: 15px; }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.4s ease-out;
+            padding: 0 20px;
+            color: #a1a1a6;
         }
 
-        /* 6. FOOTER */
-        .footer-ijobs {
-            background-color: #0d0d0d;
-            padding: 80px 20px;
-            border-top: 1px solid rgba(166, 99, 204, 0.1);
-            text-align: center;
-        }
+        .faq-item.active .faq-answer { max-height: 250px; padding-bottom: 25px; }
+        .faq-item.active .faq-question span { transform: rotate(45deg); color: var(--lila-suave); }
 
+        /* 4. INSTAGRAM BUTTON REESTILIZADO */
+        .footer-ijobs { padding: 80px 20px; text-align: center; border-top: 1px solid rgba(166, 99, 204, 0.1); }
+        
         .instagram-link {
             display: inline-flex;
             align-items: center;
             color: white;
             text-decoration: none;
-            padding: 12px 25px;
-            border: 1px solid var(--lila-suave);
-            border-radius: 15px;
-            background: rgba(166, 99, 204, 0.1);
-            transition: 0.3s;
+            padding: 15px 35px;
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 10px 20px rgba(220, 39, 67, 0.3);
+            margin-bottom: 25px;
         }
 
-        /* 7. WHATSAPP WIDGET */
+        .instagram-link:hover { transform: translateY(-5px) scale(1.05); filter: brightness(1.1); }
+
+        .instagram-link::before {
+            content: '';
+            display: inline-block;
+            width: 22px;
+            height: 22px;
+            margin-right: 12px;
+            background: url('https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg') no-repeat center;
+            background-size: contain;
+        }
+
+        /* 5. WHATSAPP & CHAT REPARADOS */
         .chat-container {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            z-index: 9999;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-        }
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end; /* Lo pega a la derecha */
+}
 
-        .chat-message {
-            background: var(--negro-profundo);
-            border: 1px solid var(--lila-suave);
-            padding: 12px 18px;
-            border-radius: 18px 18px 2px 18px;
-            margin-bottom: 12px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-            font-size: 0.9rem;
-        }
+.chat-message {
+    background: var(--negro-profundo);
+    border: 1px solid var(--lila-suave);
+    padding: 10px 15px;
+    border-radius: 15px 15px 2px 15px;
+    margin-bottom: 10px;
+    font-size: 0.85rem;
+    color: white;
+    width: max-content; /* Evita que se estire */
+    max-width: 220px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+}
 
         .whatsapp-btn {
             width: 65px;
@@ -207,20 +242,19 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.4);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            animation: pulse-green 2s infinite;
         }
 
-        .whatsapp-btn img { width: 35px; }
+        @keyframes pulse-green {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
 
         @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
+            from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
-        }
-
-        @media (max-width: 768px) {
-            .trust-bar { flex-direction: column; gap: 40px; }
-            .glass-card h1 { font-size: 2.5rem; }
-            .trust-item p { white-space: normal; }
         }
     </style>
 </head>
@@ -229,53 +263,97 @@
     <section class="hero">
         <div class="glass-card">
             <h1>ijobs</h1>
-            <p>Tu estilo, tu iPhone. Lo último de Apple con la mejor onda juvenil.</p>
+            <p>Tu estilo, tu iPhone. Lo último de Apple en Lomas.</p>
             <button class="btn-explorar" onclick="document.getElementById('catalogo').scrollIntoView({behavior: 'smooth'})">Explorar Equipos</button>
         </div>
-    </section>
-
-    <section class="trust-bar">
-        <div class="trust-item"><span class="icon">💎</span><p>Equipos 100% Originales</p></div>
-        <div class="trust-item"><span class="icon">🚀</span><p>Envíos Flash en el día</p></div>
-        <div class="trust-item"><span class="icon">🔒</span><p>Garantía de Confianza</p></div>
     </section>
 
     <section id="catalogo" class="productos">
         <h2 style="margin-bottom: 50px; font-size: 2.5rem;">Equipos Disponibles</h2>
         <div class="contenedor-grid">
-            
             <div class="producto-card">
-                <img src="iphone13.png" alt="iPhone 13 Premium">
+                <img src="iphone11.png" alt="iPhone 11">
+                <h3>iPhone 11</h3>
+                <p>El ingreso ideal al mundo Apple. Batería para todo el día y cámaras que no fallan.</p>
+                <p style="color: var(--lila-suave); font-weight: bold;">U$S 420</p>
+                <button class="btn-comprar" onclick="window.open('https://wa.me/5491138057772?text=Me%20interesa%20el%20iPhone%2011')">Consultar Stock</button>
+            </div>
+            <div class="producto-card">
+                <img src="iphone12pro.png" alt="iPhone 12 Pro">
+                <h3>iPhone 12 Pro</h3>
+                <p>El primer gran salto al diseño Pro actual. Fotos épicas y potencia de sobra para todo.</p>
+                <p style="color: var(--lila-suave); font-weight: bold;">U$S 649</p>
+                <button class="btn-comprar" onclick="window.open('https://wa.me/5491138057772?text=Me%20interesa%20el%20iPhone%2012%20Pro')">Consultar Stock</button>
+            </div>
+            <div class="producto-card">
+                <img src="iphone13.png" alt="iPhone 13">
                 <h3>iPhone 13</h3>
-                <p>El favorito de la city. Batería y fotos increíbles.</p>
+                <p>El favorito de la city. Batería y fotos increíbles en un tamaño ideal.</p>
                 <p style="color: var(--lila-suave); font-weight: bold;">U$S 400</p>
-                <button class="btn-comprar" onclick="window.open('https://wa.me/5491138057772?text=Hola%20ijobs!%20Me%20interesa%20el%20iPhone%2013', '_blank')">Consultar Stock</button>
+                <button class="btn-comprar" onclick="window.open('https://wa.me/5491138057772?text=Me%20interesa%20el%20iPhone%2013')">Consultar Stock</button>
             </div>
-
             <div class="producto-card">
-                <img src="iphone14pro.png" alt="iPhone 14 Pro Premium">
-                <h3>iPhone 14 Pro</h3>
-                <p>Dynamic Island. Cámara de 48MP. El rey del contenido.</p>
-                <p style="color: var(--lila-suave); font-weight: bold;">U$S 540</p>
-                <button class="btn-comprar" onclick="window.open('https://wa.me/5491138057772?text=Hola%20ijobs!%20Me%20interesa%20el%20iPhone%2014%20Pro', '_blank')">Consultar Stock</button>
+                <img src="iphone13pro.png" alt="iPhone 13 Pro">
+                <h3>iPhone 13 Pro</h3>
+                <p>Pantalla ProMotion de 120Hz y el modo Cine. Rendimiento Pro sin vueltas.</p>
+                <p style="color: var(--lila-suave); font-weight: bold;">U$S 750</p>
+                <button class="btn-comprar" onclick="window.open('https://wa.me/5491138057772?text=Me%20interesa%20el%20iPhone%2013%20Pro')">Consultar Stock</button>
             </div>
+            <div class="producto-card">
+                <img src="iphone14.png" alt="iPhone 14">
+                <h3>iPhone 14</h3>
+                <p>Detección de choques y batería épica. El equilibrio perfecto entre potencia y estilo.</p>
+                <p style="color: var(--lila-suave); font-weight: bold;">U$S 700</p>
+                <button class="btn-comprar" onclick="window.open('https://wa.me/5491138057772?text=Me%20interesa%20el%20iPhone%2014')">Consultar Stock</button>
+            </div>
+            <div class="producto-card">
+                <img src="iphone14pro.png" alt="iPhone 14 Pro">
+                <h3>iPhone 14 Pro</h3>
+                <p>Dynamic Island. Cámara de 48MP. El rey absoluto del contenido.</p>
+                <p style="color: var(--lila-suave); font-weight: bold;">U$S 540</p>
+                <button class="btn-comprar" onclick="window.open('https://wa.me/5491138057772?text=Me%20interesa%20el%20iPhone%2014%20Pro')">Consultar Stock</button>
+            </div>
+        </div>
+    </section>
 
+    <section class="faq-section">
+        <h2 style="margin-bottom: 40px; font-size: 2.2rem; text-align: center;">Dudas frecuentes</h2>
+        <div class="faq-container">
+            <div class="faq-item">
+                <button class="faq-question">¿Los equipos tienen garantía? <span>+</span></button>
+                <div class="faq-answer"><p>¡Obvio! Todos nuestros equipos cuentan con garantía escrita de ijobs para tu tranquilidad.</p></div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">¿Qué métodos de pago aceptan? <span>+</span></button>
+                <div class="faq-answer"><p>Aceptamos dólares en efectivo, transferencia y cripto (USDT).</p></div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">¿Toman equipos en parte de pago? <span>+</span></button>
+                <div class="faq-answer"><p>Tomamos modelos del 11 en adelante, sujetos a revisión técnica presencial.</p></div>
+            </div>
         </div>
     </section>
 
     <footer class="footer-ijobs">
-        <div class="footer-logo">ijobs</div>
-        <p>Expertos en Apple. Elevamos tu tecnología.</p>
         <a href="https://instagram.com/ijobs.iphone" target="_blank" class="instagram-link">Seguinos en Instagram</a>
-        <p style="margin-top: 40px; opacity: 0.3; font-size: 0.8rem;">&copy; 2026 ijobs - Reservados todos los derechos.</p>
+        <p style="opacity: 0.3;">&copy; 2026 ijobs - Apple Store Premium</p>
     </footer>
 
     <div class="chat-container">
-        <div class="chat-message"><p>¡Hola! 👋 Soy de **ijobs**. ¿Buscás algún iPhone?</p></div>
-        <a href="https://wa.me/5491138057772" class="whatsapp-btn" target="_blank">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WA">
-        </a>
+    <div class="chat-message">
+        <p>¡Hola! 👋 Soy de <strong>ijobs</strong>. ¿Buscás algún iPhone?</p>
     </div>
+    <a href="https://wa.me/5491138057772" class="whatsapp-btn" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WA" width="35">
+    </a>
+</div>
 
+    <script>
+        document.querySelectorAll('.faq-question').forEach(button => {
+            button.addEventListener('click', () => {
+                button.parentElement.classList.toggle('active');
+            });
+        });
+    </script>
 </body>
 </html>
