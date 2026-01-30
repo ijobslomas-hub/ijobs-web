@@ -114,17 +114,9 @@
         }
 
         @keyframes moveGradient {
-            0% {
-                background-position: 0% 50%, center;
-            }
-
-            50% {
-                background-position: 100% 50%, center;
-            }
-
-            100% {
-                background-position: 0% 50%, center;
-            }
+            0% { background-position: 0% 50%, center; }
+            50% { background-position: 100% 50%, center; }
+            100% { background-position: 0% 50%, center; }
         }
 
         .glass-card {
@@ -171,22 +163,18 @@
             margin-top: 20px;
             position: relative;
             overflow: hidden;
-            /* Sombra suave de color lila para que flote */
             box-shadow: 0 10px 30px rgba(166, 99, 204, 0.3);
             text-transform: uppercase;
             letter-spacing: 1px;
         }
 
-        /* El efecto de brillo cuando pasas el mouse */
         .btn-explorar:hover {
             transform: scale(1.05);
             background: #ffffff;
-            /* Resplandor más fuerte en el hover */
             box-shadow: 0 0 40px rgba(166, 99, 204, 0.6);
             color: var(--purpura-vibrante);
         }
 
-        /* El destello de luz que cruza el botón */
         .btn-explorar::after {
             content: '';
             position: absolute;
@@ -194,18 +182,13 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: linear-gradient(45deg,
-                    transparent,
-                    rgba(255, 255, 255, 0.4),
-                    transparent);
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.4), transparent);
             transform: rotate(45deg);
             transition: 0.6s;
             pointer-events: none;
         }
 
-        .btn-explorar:hover::after {
-            left: 100%;
-        }
+        .btn-explorar:hover::after { left: 100%; }
 
         .productos {
             padding: 100px 20px;
@@ -242,32 +225,35 @@
             box-shadow: 0 15px 35px rgba(111, 45, 189, 0.2);
         }
 
-        /* --- ESTILO DE IMÁGENES PREMIUM --- */
         .producto-card img {
             width: 100%;
             border-radius: 20px;
-            margin-bottom: 20px;
             transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            /* Filtro para dar nitidez y una sombra sutil inicial */
-            filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.5));
+            filter: drop-shadow(0 10px 15px rgba(0,0,0,0.5));
         }
 
-        /* EFECTO DE LUZ AL PASAR EL MOUSE */
         .producto-card:hover img {
-            transform: scale(1.08) translateY(-5px);
-            /* Crea un resplandor lila detrás del iPhone */
+            transform: scale(1.06) translateY(-10px);
             filter: drop-shadow(0 0 25px rgba(166, 99, 204, 0.5)) brightness(1.1);
         }
 
-        /* CONTENEDOR DE LA IMAGEN (Opcional para mejorar el encuadre) */
-        .producto-card .img-container {
-            overflow: hidden;
-            border-radius: 20px;
-            background: rgba(255, 255, 255, 0.02);
-            margin-bottom: 15px;
-        }
-
-        .precio-tag {
+.desde-tag {
+    display: block;
+    font-size: 0.85rem;          /* Más chico que antes para que no compita con el precio */
+    font-weight: 800;
+    color: var(--blanco-puro);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-top: 15px;            /* Crea el espacio con el texto de arriba */
+    margin-bottom: -10px;        /* "Atrae" el precio hacia arriba para que queden pegados */
+    text-shadow: 0 0 15px rgba(166, 99, 204, 0.4); /* Mismo brillo lila premium */
+    opacity: 0.9;
+}
+/* Retoque al precio para asegurar la separación */
+.precio-tag {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+}        .precio-tag {
             font-size: 1.8rem;
             font-weight: 800;
             color: var(--blanco-puro);
@@ -277,6 +263,7 @@
         }
 
         .btn-comprar {
+            width: 100%;
             background: transparent;
             color: var(--blanco-puro);
             border: 1px solid var(--lila-suave);
@@ -285,95 +272,84 @@
             font-weight: 600;
             cursor: pointer;
             transition: 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.8rem;
         }
 
         .btn-comprar:hover {
             background: var(--purpura-vibrante);
             border-color: var(--purpura-vibrante);
+            box-shadow: 0 0 20px rgba(111, 45, 189, 0.4);
         }
 
+        /* --- SECCIÓN FAQ PREMIUM CORREGIDA --- */
         .faq-section {
             padding: 80px 20px;
             max-width: 900px;
             margin: 0 auto;
         }
 
-
-        /* 1. LIMPIEZA TOTAL: Eliminamos el fondo blanco de los botones y respuestas */
-        .faq-question,
-        .faq-answer,
-        .faq-item {
-            background: transparent !important;
-            border: none !important;
-            box-shadow: none !important;
-            outline: none !important;
-            appearance: none !important;
-            -webkit-appearance: none !important;
-        }
-
-        /* 2. EFECTO DE VIDRIO LILA (Glassmorphism): Aplicado al contenedor principal */
-        /* CONTENEDOR FAQ PREMIUM */
         .faq-container {
             background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(166, 99, 204, 0.3);
-            border-radius: 25px;
-            padding: 30px;
-            max-width: 900px;
-            margin: 40px auto;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(166, 99, 204, 0.2);
+            border-radius: 30px;
+            padding: 40px;
+            max-width: 850px;
+            margin: 50px auto;
         }
 
-        /* PREGUNTAS: Grandes y centradas */
         .faq-item {
             border-bottom: 1px solid rgba(166, 99, 204, 0.1);
-            padding: 10px 0;
         }
 
         .faq-question {
             background: transparent !important;
             border: none !important;
-            color: #ffffff;
-            width: 100%;
-            padding: 20px;
+            color: white;
             font-size: 1.4rem;
-            /* Tamaño grande solicitado */
-            font-weight: 600;
+            font-weight: 700;
+            width: 100%;
+            text-align: center;
+            padding: 25px;
             cursor: pointer;
             display: flex;
             justify-content: center;
-            /* Centrado solicitado */
             align-items: center;
             gap: 15px;
             transition: all 0.3s ease;
         }
 
-        /* EFECTO PREMIUM AL PASAR EL MOUSE */
-        .faq-item:hover {
-            background: rgba(166, 99, 204, 0.05);
-            border-radius: 15px;
+        .faq-question span {
+            transition: transform 0.4s ease;
+            color: var(--lila-suave);
+        }
+
+        .faq-item.active .faq-question span {
+            transform: rotate(45deg);
         }
 
         .faq-item:hover .faq-question {
-            color: #A663CC;
-            text-shadow: 0 0 15px rgba(166, 99, 204, 0.5);
-            transform: scale(1.03);
+            color: var(--lila-suave);
+            text-shadow: 0 0 15px rgba(166, 99, 204, 0.4);
         }
 
-        /* RESPUESTAS: Centradas y claras */
         .faq-answer {
             max-height: 0;
             overflow: hidden;
-            transition: all 0.4s ease;
+            transition: all 0.5s ease-out;
+            opacity: 0;
             text-align: center;
-            /* Centrado solicitado */
-            color: rgba(255, 255, 255, 0.8);
             font-size: 1.1rem;
-            padding: 0 20px;
+            color: rgba(255, 255, 255, 0.8);
+            padding: 0 30px;
         }
 
         .faq-item.active .faq-answer {
             max-height: 200px;
-            padding: 15px 20px 25px;
+            opacity: 1;
+            padding: 10px 30px 30px;
         }
 
         .footer-ijobs {
@@ -388,7 +364,6 @@
             color: white;
             text-decoration: none;
             padding: 15px 35px;
-            /* Gradiente original de Instagram */
             background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
             border-radius: 20px;
             font-weight: 700;
@@ -400,11 +375,8 @@
 
         .instagram-link:hover {
             transform: translateY(-5px) scale(1.05);
-            /* Se eleva y se agranda un poquito */
             filter: brightness(1.1);
-            /* Le da un brillo de luz */
             box-shadow: 0 15px 30px rgba(220, 39, 67, 0.5);
-            /* La sombra se vuelve más profunda */
         }
 
         .chat-container {
@@ -432,15 +404,8 @@
         }
 
         @keyframes aparecerMensaje {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .whatsapp-btn {
@@ -456,62 +421,14 @@
         }
 
         @keyframes pulse-green {
-            0% {
-                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
-            }
-
-            70% {
-                box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
-            }
-
-            100% {
-                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
-            }
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
         }
 
         @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* ESTILO PARA QUE EL PRECIO SEA IMPONENTE */
-        .precio-tag {
-            font-size: 1.8rem;
-            font-weight: 800;
-            color: var(--blanco-puro);
-            margin: 15px 0;
-            display: block;
-            text-shadow: 0 0 15px rgba(166, 99, 204, 0.4);
-            /* Brillo lila en el precio */
-        }
-
-        /* RETOQUE PREMIUM A LOS BOTONES */
-        .btn-comprar {
-            width: 100%;
-            background: transparent;
-            color: var(--blanco-puro);
-            border: 1px solid var(--lila-suave);
-            padding: 12px;
-            border-radius: 15px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: 0.3s;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-size: 0.8rem;
-        }
-
-        .btn-comprar:hover {
-            background: var(--purpura-vibrante);
-            border-color: var(--purpura-vibrante);
-            box-shadow: 0 0 20px rgba(111, 45, 189, 0.4);
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
@@ -557,21 +474,28 @@
         <p class="subtitulo-seccion">Ingeniería Apple al alcance de tu mano</p>
 
         <div class="contenedor-grid">
-            <div class="producto-card">
-                <img src="iphone11.png" alt="iPhone 11">
-                <h3>iPhone 11</h3>
-                <p>El ingreso ideal al mundo Apple. Batería para todo el día y cámaras que no fallan.</p>
-                <span class="precio-tag">U$S 420</span>
-                <button class="btn-comprar"
-                    onclick="window.open('https://wa.me/5491138057772?text=Me%20interesa%20el%20iPhone%2011')">Consultar
-                    Disponibilidad</button>
-            </div>
+           <div class="producto-card">
+    <img src="iphone11.png" alt="iPhone 11">
+    <h3>iPhone 11</h3>
+    <p>El ingreso ideal al mundo Apple. Batería para todo el día y cámaras que no fallan.</p>
+    
+    <span class="aclaracion-usados"></span>
+    
+    <span class="desde-tag">Desde</span>
+    <span class="precio-tag">U$S 270</span>
+    
+    <button class="btn-comprar" onclick="window.open('...')">Consultar Disponibilidad</button>
+</div>
 
             <div class="producto-card">
                 <img src="iphone12pro.png" alt="iPhone 12 Pro">
                 <h3>iPhone 12 Pro</h3>
                 <p>El primer gran salto al diseño Pro actual. Fotos épicas y potencia de sobra para todo.</p>
-                <span class="precio-tag">U$S 649</span>
+                <span class="aclaracion-usados"></span>
+    
+    <span class="desde-tag">Desde</span>
+    <span class="precio-tag">U$S 350</span>
+
                 <button class="btn-comprar"
                     onclick="window.open('https://wa.me/5491138057772?text=Me%20interesa%20el%20iPhone%2012%20Pro')">Consultar
                     Disponibilidad</button>
@@ -581,7 +505,10 @@
                 <img src="iphone13.png" alt="iPhone 13">
                 <h3>iPhone 13</h3>
                 <p>El favorito de la city. Batería y fotos increíbles en un tamaño ideal.</p>
-                <span class="precio-tag">U$S 400</span>
+<span class="aclaracion-usados"></span>
+    
+    <span class="desde-tag">Desde</span>
+    <span class="precio-tag">U$S 370</span>
                 <button class="btn-comprar"
                     onclick="window.open('https://wa.me/5491138057772?text=Me%20interesa%20el%20iPhone%2013')">Consultar
                     Disponibilidad</button>
@@ -591,7 +518,10 @@
                 <img src="iphone13pro.png" alt="iPhone 13 Pro">
                 <h3>iPhone 13 Pro</h3>
                 <p>Pantalla ProMotion de 120Hz y el modo Cine. Rendimiento Pro sin vueltas.</p>
-                <span class="precio-tag">U$S 750</span>
+<span class="aclaracion-usados"></span>
+    
+    <span class="desde-tag">Desde</span>
+    <span class="precio-tag">U$S 450</span>
                 <button class="btn-comprar"
                     onclick="window.open('https://wa.me/5491138057772?text=Me%20interesa%20el%20iPhone%2013%20Pro')">Consultar
                     Disponibilidad</button>
@@ -601,7 +531,10 @@
                 <img src="iphone14.png" alt="iPhone 14">
                 <h3>iPhone 14</h3>
                 <p>Detección de choques y batería épica. El equilibrio perfecto entre potencia y estilo.</p>
-                <span class="precio-tag">U$S 700</span>
+<span class="aclaracion-usados"></span>
+    
+    <span class="desde-tag">Desde</span>
+    <span class="precio-tag">U$S 430</span>
                 <button class="btn-comprar"
                     onclick="window.open('https://wa.me/5491138057772?text=Me%20interesa%20el%20iPhone%2014')">Consultar
                     Disponibilidad</button>
@@ -611,7 +544,10 @@
                 <img src="iphone14pro.png" alt="iPhone 14 Pro">
                 <h3>iPhone 14 Pro</h3>
                 <p>Dynamic Island. Cámara de 48MP. El rey absoluto del contenido.</p>
-                <span class="precio-tag">U$S 540</span>
+<span class="aclaracion-usados"></span>
+    
+    <span class="desde-tag">Desde</span>
+    <span class="precio-tag">U$S 500</span>
                 <button class="btn-comprar"
                     onclick="window.open('https://wa.me/5491138057772?text=Me%20interesa%20el%20iPhone%2014%20Pro')">Consultar
                     Disponibilidad</button>
@@ -646,7 +582,7 @@
 
     <footer class="footer-ijobs">
         <a href="https://instagram.com/ijobs.iphone" target="_blank" class="instagram-link">Seguinos en Instagram</a>
-        <p style="opacity: 0.3;">&copy; 2026 ijobs - Apple Store Premium</p>
+        <p style="opacity: 0.3; text-align: center; margin-top: 20px;">&copy; 2026 ijobs - Apple Store Premium</p>
     </footer>
 
     <div class="chat-container">
@@ -664,10 +600,14 @@
     <script>
         document.querySelectorAll('.faq-question').forEach(button => {
             button.addEventListener('click', () => {
-                button.parentElement.classList.toggle('active');
+                const item = button.parentElement;
+                // Cierra los otros cuando abrís una nueva
+                document.querySelectorAll('.faq-item').forEach(other => {
+                    if (other !== item) other.classList.remove('active');
+                });
+                item.classList.toggle('active');
             });
         });
     </script>
 </body>
-
 </html>
