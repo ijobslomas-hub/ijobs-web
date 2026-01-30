@@ -242,15 +242,29 @@
             box-shadow: 0 15px 35px rgba(111, 45, 189, 0.2);
         }
 
+        /* --- ESTILO DE IMÁGENES PREMIUM --- */
         .producto-card img {
             width: 100%;
             border-radius: 20px;
             margin-bottom: 20px;
-            transition: 0.5s;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            /* Filtro para dar nitidez y una sombra sutil inicial */
+            filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.5));
         }
 
+        /* EFECTO DE LUZ AL PASAR EL MOUSE */
         .producto-card:hover img {
-            transform: scale(1.05);
+            transform: scale(1.08) translateY(-5px);
+            /* Crea un resplandor lila detrás del iPhone */
+            filter: drop-shadow(0 0 25px rgba(166, 99, 204, 0.5)) brightness(1.1);
+        }
+
+        /* CONTENEDOR DE LA IMAGEN (Opcional para mejorar el encuadre) */
+        .producto-card .img-container {
+            overflow: hidden;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.02);
+            margin-bottom: 15px;
         }
 
         .precio-tag {
@@ -284,47 +298,67 @@
             margin: 0 auto;
         }
 
+
+        /* 1. LIMPIEZA TOTAL: Eliminamos el fondo blanco de los botones y respuestas */
+        .faq-question,
+        .faq-answer,
+        .faq-item {
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+            outline: none !important;
+            appearance: none !important;
+            -webkit-appearance: none !important;
+        }
+
+        /* 2. EFECTO DE VIDRIO LILA (Glassmorphism): Aplicado al contenedor principal */
         .faq-container {
-            background: rgba(255, 255, 255, 0.02);
+            background: rgba(255, 255, 255, 0.02) !important;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(166, 99, 204, 0.3) !important;
             border-radius: 30px;
             padding: 20px;
-            border: 1px solid rgba(166, 99, 204, 0.1);
+            box-shadow: 0 0 40px rgba(111, 45, 189, 0.1);
         }
 
+        /* 3. INTERACCIÓN PREMIUM: El borde se ilumina al pasar el mouse */
         .faq-item {
-            border-bottom: 1px solid rgba(166, 99, 204, 0.1);
+            border-bottom: 1px solid rgba(166, 99, 204, 0.1) !important;
+            transition: all 0.4s ease;
+            margin: 5px 0;
         }
 
-        .faq-item:last-child {
-            border-bottom: none;
+        .faq-item:hover {
+            background: rgba(166, 99, 204, 0.05) !important;
+            border-radius: 15px;
+            transform: translateX(10px);
+            /* Leve desplazamiento lateral */
         }
 
+        /* 4. TEXTO Y SÍMBOLOS: Color lila suave y brillo */
         .faq-question {
-            all: unset;
-            width: 100%;
-            padding: 25px 20px;
-            box-sizing: border-box;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            cursor: pointer;
-            color: white;
-            font-size: 1.1rem;
+            color: #FBFBFB !important;
             font-weight: 600;
-            transition: 0.3s;
         }
 
+        .faq-item:hover .faq-question {
+            color: #A663CC !important;
+            text-shadow: 0 0 10px rgba(166, 99, 204, 0.5);
+        }
+
+        /* 5. ACORDEÓN: Funcionalidad restaurada */
         .faq-answer {
             max-height: 0;
             overflow: hidden;
             transition: all 0.4s ease-out;
             padding: 0 20px;
-            color: #a1a1a6;
+            color: rgba(255, 255, 255, 0.7);
         }
 
         .faq-item.active .faq-answer {
-            max-height: 250px;
-            padding-bottom: 25px;
+            max-height: 200px;
+            /* Altura suficiente para el contenido */
+            padding-bottom: 20px;
         }
 
         .footer-ijobs {
